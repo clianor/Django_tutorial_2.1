@@ -16,7 +16,9 @@ class Question(models.Model):
         """
         발행 시간이 하루 이내인지 체크하는 함수.
         """
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.pub_date <= now
+
 
 class Choice(models.Model):
     """Choice Class"""
